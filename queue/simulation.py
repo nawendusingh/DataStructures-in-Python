@@ -15,20 +15,16 @@ def simulation(numSeconds, pagesPerMinute):
             printQueue.enqueue(task)
 
         if(not labprinter.busy()) and (not printQueue.isEmpty()):
-            # print(printQueue.size())
             nexttask = printQueue.dequeue()
             waitingtimes.append(nexttask.waitTime(currentSecond))
-            # print(waitingtimes)
             labprinter.startNext(nexttask)
 
         labprinter.tick()
-    # return waitingtimes
     return((sum(waitingtimes)/len(waitingtimes)), printQueue.size())
 
 
 def newPrintTask():
     num = random.randrange(1, 181)
-    # print(num)
     if num == 180:
         return True
     else:
